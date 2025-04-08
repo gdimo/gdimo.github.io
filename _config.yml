@@ -31,9 +31,9 @@ instagram_username: giorgos.dimop
 
 # Additional icon links
 additional_links:
-- title: itsgoingto.be
+- title: Not a Top 10 podcast
   icon: fas fa-globe
-  url: https://www.itsgoingto.be
+  url: https://www.notatop10.fm/
 # - title: another link
 #   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
 #   url: Link url (eg. https://google.com)
@@ -48,9 +48,7 @@ additional_links:
 # about_title: About Me
 about_profile_image: images/profile.jpg
 about_content: | # this will include new lines to allow paragraphs
-  Hi, my name's Brett and I'm a senior network system administrator. As well as administrating systems I also have experience making software and web apps. I have worked at a number of companies gaining teamwork and leadership skills.
-
-  I am most skilled in: <mark>AWS</mark> and <mark>Eating Pizza</mark>
+  Hi, my name's George and I'm an astrophysicist with passion for supermassive black holes.
 
 content:
   - title: Projects # Title for the section
@@ -115,7 +113,8 @@ content:
 # Footer
 footer_show_references: true
 # references_title: References on request (Override references text)
-
+footer_custom_message: |
+  Favicon by <a href="https://www.flaticon.com/free-icons/black-hole" title="black hole icons">cah nggunung - Flaticon</a>.
 # Build settings
 remote_theme: sproogen/resume-theme
 
