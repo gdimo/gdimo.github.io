@@ -1,0 +1,23 @@
+- layout: left
+  title: PhD candidate in Astrophysics
+  sub_title: Instituto de Estudios Astrofísicos, Universidad Diego Portales
+  caption: 2021–-Present, Santiago, Chile
+  description: |
+    **Topic:** Developing realistic X-ray models to investigate the close environments of Supermassive Black Holes  
+    **Advisor:** Prof. Claudio Ricci
+
+- layout: left
+  title: Master of Science in Astronomy and Astrophysics
+  sub_title: University of Athens, National Observatory of Athens
+  caption: 2017–-2019, Athens, Greece
+  description: |
+    **Thesis:** Coronal properties of Sy 1 galaxies using *NuSTAR* data  
+    **Advisors:** Dr. Ioannis Georgantopoulos, Dr. Athanasios Akylas
+
+- layout: left
+  title: Bachelor in Physics
+  sub_title: University of Patras
+  caption: 2012–-2017, Patras, Greece
+  description: |
+    **Thesis:** Differential Photometry of the Ecliptic Binary GK Boo  
+    **Advisor:** Prof. P. E. Christopoulou

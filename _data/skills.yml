@@ -1,0 +1,9 @@
+- layout: left
+  title: General
+  description: |
+    Python, Matlab, Git/GitHub, Docker, MS Office, UNIX/bash
+
+- layout: left
+  title: Astronomy
+  description: |
+    XSPEC, AstroPy, ds9, Topcat
