@@ -17,32 +17,17 @@ darkmode: false
 # Social links
 twitter_username: astro_giorgos
 github_username:  gdimo
-# stackoverflow_username: "00000001"
-# dribbble_username: jekyll
-# facebook_username: jekyll
-# flickr_username: jekyll
-instagram_username: giorgos.dimop
-#linkedin_username: jameswgrant
-# xing_username: jekyll
-# pinterest_username: jekyll
-#youtube_username: globalmtb
-# googleplus_username: +jekyll
-# orcid_username: 0000-0000-0000-0000
+# ... other social links ...
 
 # Additional icon links
 additional_links:
 - title: Not a Top 10 podcast
   icon: fas fa-globe
   url: https://www.notatop10.fm/
-# - title: another link
-#   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
-#   url: Link url (eg. https://google.com)
+# ... other additional links ...
 
 # Google Analytics and Tag Manager
-# Using more than one of these may cause issues with reporting
-# gtm: "GTM-0000000"
-# gtag: "UA-00000000-0"
-# google_analytics: "UA-00000000-0"
+# ... analytics settings ...
 
 # About Section
 # about_title: About Me
@@ -53,36 +38,28 @@ about_content: | # this will include new lines to allow paragraphs
 content:
   - title: Education
     layout: list
-    data: education
+    content:
+      - layout: left
+        title: PhD candidate in Astrophysics
+        institute: Instituto de Estudios Astrofísicos, Universidad Diego Portales
+        caption: 2021 - Present, Santiago, Chile
+        description: "**Topic:** Developing realistic X-ray models to investigate the close environments of Supermassive Black Holes **Advisor:** Prof. Claudio Ricci"
 
-  - title: Experience
-    layout: list
-    data: experience
+      - layout: left
+        title: Master of Science in Astronomy and Astrophysics
+        sub_title: University of Athens, National Observatory of Athens
+        caption: 2017 - 2019, Athens, Greece
+        description: |
+          **Thesis:** Coronal properties of Sy 1 galaxies using *NuSTAR* data
+          **Advisors:** Dr. Ioannis Georgantopoulos, Dr. Athanasios Akylas
 
-  - title: Publications
-    layout: list
-    data: publications
-
-  - title: Conferences and Schools
-    layout: list
-    data: conferences
-
-  - title: Grants and Fellowships
-    layout: list
-    data: grants
-
-  - title: Computer Skills
-    layout: list
-    data: skills
-
-#  - title: Languages
-#    layout: list
-#    data: languages
-
-  - title: Outreach
-    layout: list
-    data: outreach
-
+      - layout: left
+        title: Bachelor in Physics
+        sub_title: University of Patras
+        caption: 2012 - 2017, Patras, Greece
+        description: |
+          **Thesis:** Differential Photometry of the Ecliptic Binary GK Boo
+          **Advisor:** Prof. P. E. Christopoulou
 # Footer
 footer_show_references: true
 # references_title: References on request (Override references text)

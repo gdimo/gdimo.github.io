@@ -1,10 +1,8 @@
 - layout: left
   title: PhD candidate in Astrophysics
-  sub_title: Instituto de Estudios Astrofísicos, Universidad Diego Portales
-  caption: 2021–-Present, Santiago, Chile
-  description: |
-    **Topic:** Developing realistic X-ray models to investigate the close environments of Supermassive Black Holes  
-    **Advisor:** Prof. Claudio Ricci
+  institute: Instituto de Estudios Astrofísicos, Universidad Diego Portales
+  caption: 2021Present, Santiago, Chile
+  description: "**Topic:** Developing realistic X-ray models to investigate the close environments of Supermassive Black Holes **Advisor:** Prof. Claudio Ricci"
 
 - layout: left
   title: Master of Science in Astronomy and Astrophysics
