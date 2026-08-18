@@ -1,29 +1,5 @@
 [
   {
-    "title": "XRISM Resolves the Circum-nuclear Environment of NGC 4945",
-    "authors": "P. G. Boorman, P. Gandhi, Y. Ueda, et al. (incl. G. Dimopoulos)",
-    "journal": "arXiv e-print",
-    "year": 2026,
-    "link": "https://ui.adsabs.harvard.edu/abs/2026arXiv260802294B/abstract",
-    "arxiv": null
-  },
-  {
-    "title": "Extreme Variability Reveals How the Eddington Ratio Regulates Coronal Power in Active Galactic Nuclei",
-    "authors": "A. Jana, C. Ricci, F. E. Bauer, et al. (incl. G. Dimopoulos)",
-    "journal": "The Astrophysical Journal Letters",
-    "year": 2026,
-    "link": "https://ui.adsabs.harvard.edu/abs/2026ApJ..1007L...4J/abstract",
-    "arxiv": null
-  },
-  {
-    "title": "Multiwavelength properties of changing-state active galactic nuclei: I. The evolution of soft excess and X-ray continuum",
-    "authors": "A. Jana, C. Ricci, A. Tortosa, et al. (incl. G. Dimopoulos)",
-    "journal": "Astronomy & Astrophysics",
-    "year": 2026,
-    "link": "https://ui.adsabs.harvard.edu/abs/2026A%26A...707A.213J/abstract",
-    "arxiv": null
-  },
-  {
     "title": "The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models",
     "authors": "G. Dimopoulos, C. Ricci, S. Paltani",
     "journal": "The Astrophysical Journal",
@@ -37,6 +13,22 @@
     "journal": "Monthly Notices of the Royal Astronomical Society",
     "year": 2024,
     "link": "https://ui.adsabs.harvard.edu/abs/2024MNRAS.532.4369D/abstract",
+    "arxiv": null
+  },
+  {
+    "title": "XRISM Resolves the Circum-nuclear Environment of NGC 4945",
+    "authors": "P. G. Boorman, P. Gandhi, Y. Ueda, et al. (incl. G. Dimopoulos)",
+    "journal": "arXiv e-print",
+    "year": 2026,
+    "link": "https://ui.adsabs.harvard.edu/abs/2026arXiv260802294B/abstract",
+    "arxiv": null
+  },
+  {
+    "title": "Extreme Variability Reveals How the Eddington Ratio Regulates Coronal Power in Active Galactic Nuclei",
+    "authors": "A. Jana, C. Ricci, F. E. Bauer, et al. (incl. G. Dimopoulos)",
+    "journal": "The Astrophysical Journal Letters",
+    "year": 2026,
+    "link": "https://ui.adsabs.harvard.edu/abs/2026ApJ..1007L...4J/abstract",
     "arxiv": null
   },
   {
