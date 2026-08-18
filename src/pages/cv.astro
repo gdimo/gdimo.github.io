@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import cv from '../data/cv.json';
+import publications from '../data/publications.json';
+import profile from '../data/profile.json';
+---
+
+<Base title="CV & Publications" description="Curriculum vitae and publications of George Dimopoulos.">
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Curriculum vitae</span>
+      <h1>CV & Publications</h1>
+      {cv.cvPdf ? (
+        <a class="btn btn-primary" href={cv.cvPdf} download>Download CV (PDF)</a>
+      ) : (
+        <p class="muted">A downloadable PDF version is coming soon.</p>
+      )}
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container cv-grid">
+      <div class="reveal">
+        <h2>Positions</h2>
+        <ul class="timeline">
+          {cv.positions.map((item) => (
+            <li>
+              <span class="when">{item.when}</span>
+              <h3>{item.title}</h3>
+              <p class="where">{item.where}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div class="reveal">
+        <h2>Education</h2>
+        <ul class="timeline">
+          {cv.education.map((item) => (
+            <li>
+              <span class="when">{item.when}</span>
+              <h3>{item.title}</h3>
+              <p class="where">{item.where}</p>
+              {'note' in item && item.note && <p class="muted note">{item.note}</p>}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="publications" style="background: var(--bg-soft);">
+    <div class="container">
+      <span class="kicker reveal">Publications</span>
+      <h2 class="reveal">Selected publications</h2>
+      <ul class="pub-list">
+        {publications.map((pub) => (
+          <li class="reveal">
+            <p class="pub-title">{pub.title}</p>
+            <p class="pub-meta">
+              {pub.authors} · <span class="journal">{pub.journal}</span> · {pub.year}
+            </p>
+            {(pub.link || pub.arxiv) && (
+              <p class="pub-links">
+                {pub.link && <a href={pub.link} rel="noopener">Journal</a>}
+                {pub.arxiv && <a href={pub.arxiv} rel="noopener">arXiv</a>}
+              </p>
+            )}
+          </li>
+        ))}
+      </ul>
+      <p class="reveal">
+        Full and up-to-date list on <a href={profile.social.ads} rel="noopener">NASA ADS</a>.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .cv-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+
+  .note { font-size: 0.9rem; margin-top: 0.3rem; }
+
+  @media (max-width: 760px) {
+    .cv-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+</style>

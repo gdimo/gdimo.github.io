@@ -1,0 +1,25 @@
+{
+  "intro": "My research focuses on the innermost regions of active galactic nuclei (AGN) — the hot corona, the accretion flow, and the obscuring material that surrounds growing supermassive black holes. I use X-ray spectroscopy together with radiative-transfer simulations to turn observed spectra into physical pictures of these environments.",
+  "topics": [
+    {
+      "icon": "🕳️",
+      "title": "Close environments of supermassive black holes",
+      "text": "Mapping the circumnuclear gas and dust of accreting supermassive black holes: its geometry, column density, and how it shapes what we observe across obscured and unobscured AGN."
+    },
+    {
+      "icon": "📈",
+      "title": "X-ray spectral modeling",
+      "text": "Developing realistic X-ray spectral models with ray-tracing radiative-transfer simulations, so that features like the Fe Kα line and its Compton shoulder can be used as physical probes rather than fitting conveniences."
+    },
+    {
+      "icon": "☀️",
+      "title": "The Fe Kα Compton shoulder",
+      "text": "Studying the Compton shoulder of the Fe Kα line as a diagnostic of the density, geometry, and motion of the reprocessing material in accreting supermassive black holes."
+    },
+    {
+      "icon": "📡",
+      "title": "Multi-wavelength views of AGN coronae",
+      "text": "Connecting millimeter and X-ray emission of accreting black holes to understand the nature of the corona, and preparing these diagnostics for the next generation of X-ray observatories."
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+---
+import Base from '../layouts/Base.astro';
+import profile from '../data/profile.json';
+---
+
+<Base title="Podcast" description="Not a Top 10 — a Greek podcast about science and technology, co-hosted by George Dimopoulos.">
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Podcast</span>
+      <h1>Not a Top 10</h1>
+      <p class="muted intro">
+        Together with my friend Themos, I co-host <strong>Not a Top 10</strong> — a Greek-language
+        podcast about science and technology. Instead of top-10 lists, we explore ideas in
+        thematic seasons: from famous scientists and quantum computing to engineering disasters
+        and the myths people believe about science, often with expert guests.
+      </p>
+      <div class="actions">
+        <a class="btn btn-primary" href={profile.social.podcast} rel="noopener">
+          Visit notatop10.fm
+        </a>
+        <a class="btn btn-ghost" href={profile.social.spotify} rel="noopener">Spotify</a>
+        <a class="btn btn-ghost" href={profile.social.applePodcasts} rel="noopener">Apple Podcasts</a>
+        <a class="btn btn-ghost" href={profile.social.youtube} rel="noopener">YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="reveal">Latest episodes</h2>
+      <iframe
+        class="reveal"
+        style="border-radius: 14px; border: 0;"
+        src="https://open.spotify.com/embed/show/43iob5LmctJa54VtuqzFmo?utm_source=generator"
+        width="100%"
+        height="352"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+        title="Not a Top 10 on Spotify"
+      ></iframe>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="card-grid">
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">🎧</span>
+          <h3>Listen anywhere</h3>
+          <p>Available on Spotify, Apple Podcasts, YouTube, Pocket Casts, Overcast, and via RSS — all links on notatop10.fm.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">🧪</span>
+          <h3>Thematic seasons</h3>
+          <p>Twelve seasons and counting, each diving into one corner of science or technology.</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">🎬</span>
+          <h3>On video too</h3>
+          <p>Episodes are also on YouTube — subscribe to watch the conversations.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: 62ch; font-size: 1.1rem; }
+  .actions { margin-top: 1.5rem; }
+</style>

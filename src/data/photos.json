@@ -1,0 +1,12 @@
+[
+  { "src": "/photos/la-silla.jpg", "alt": "Aerial view of the telescope domes of La Silla Observatory on a mountain ridge above the Atacama desert", "caption": "La Silla Observatory, Atacama desert, Chile", "ratio": "3/2" },
+  { "src": "/photos/tdp-cuernos.jpg", "alt": "The granite horns of Los Cuernos del Paine rising above a deep blue lake", "caption": "Los Cuernos del Paine, Torres del Paine National Park, Chile", "ratio": "4/3" },
+  { "src": "/photos/tdp-grey-glacier.jpg", "alt": "Grey Glacier flowing into a still lake beneath dark lenticular clouds and snow-covered peaks", "caption": "Grey Glacier under a brooding sky, Torres del Paine National Park, Chile", "ratio": "4/3" },
+  { "src": "/photos/tdp-firebush.jpg", "alt": "Red Chilean firebush blossoms above a turquoise lake, a lenticular cloud streaming off a snowy peak", "caption": "Chilean firebush in bloom, Torres del Paine National Park, Chile", "ratio": "4/3" },
+  { "src": "/photos/tdp-lakes-trail.jpg", "alt": "Chain of turquoise lakes between rocky hills seen from a high trail, snowy mountains on the horizon", "caption": "Turquoise lakes from the trail, Torres del Paine National Park, Chile", "ratio": "4/3" },
+  { "src": "/photos/tdp-cushion-plants.jpg", "alt": "Field of bright green cushion plants stretching toward distant hills on the Patagonian steppe", "caption": "Cushion plants on the Patagonian steppe, Torres del Paine National Park, Chile", "ratio": "4/3" },
+  { "src": "/photos/japan-lanterns.jpg", "alt": "Row of glowing red paper lanterns outside an izakaya at night", "caption": "Izakaya lanterns after dark, Kyoto, Japan", "ratio": "2/3" },
+  { "src": "/photos/kyoto-fushimi-train.jpg", "alt": "Long-exposure of a train streaking through the Fushimi Inari level crossing at night", "caption": "Night train at the Fushimi Inari crossing, Kyoto, Japan", "ratio": "3/2" },
+  { "src": "/photos/kyoto-temple-pines.jpg", "alt": "Ornately carved wooden temple gable rising behind sculpted pine trees against a blue sky", "caption": "Temple rooftop among the pines, Kyoto, Japan", "ratio": "3/2" },
+  { "src": "/photos/tokyo-asakusa.jpg", "alt": "Red lanterns and warm lights of an izakaya on a street corner in Asakusa at night", "caption": "Asakusa after dark, Tokyo, Japan", "ratio": "3/2" }
+]

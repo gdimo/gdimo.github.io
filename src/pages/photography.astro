@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import photos from '../data/photos.json';
+---
+
+<Base title="Photography" description="Photography by George Dimopoulos.">
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Photography</span>
+      <h1>Through the viewfinder</h1>
+      <p class="muted intro">
+        When I'm not pointing X-ray telescopes at black holes, I point cameras at
+        everything else. A selection of frames — more coming soon.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="masonry">
+        {photos.map((photo, i) => (
+          <figure
+            class="reveal"
+            data-index={i}
+            tabindex="0"
+            role="button"
+            aria-label={`View photo: ${photo.alt}`}
+          >
+            <img
+              src={photo.src}
+              alt={photo.alt}
+              loading="lazy"
+              style={`aspect-ratio: ${photo.ratio}; width: 100%; object-fit: cover;`}
+            />
+            <figcaption>{photo.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <dialog class="lightbox">
+    <figure style="margin: 0;">
+      <img src="" alt="" />
+      <figcaption></figcaption>
+    </figure>
+  </dialog>
+</Base>
+
+<script>
+  import photos from '../data/photos.json';
+
+  const dialog = document.querySelector<HTMLDialogElement>('.lightbox');
+  const dialogImg = dialog?.querySelector('img');
+  const dialogCaption = dialog?.querySelector('figcaption');
+
+  const open = (index: number) => {
+    const photo = photos[index];
+    if (!dialog || !dialogImg || !dialogCaption || !photo) return;
+    dialogImg.src = photo.src;
+    dialogImg.alt = photo.alt;
+    dialogCaption.textContent = photo.caption;
+    dialog.showModal();
+  };
+
+  document.querySelectorAll<HTMLElement>('.masonry figure').forEach((fig) => {
+    fig.addEventListener('click', () => open(Number(fig.dataset.index)));
+    fig.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        open(Number(fig.dataset.index));
+      }
+    });
+  });
+
+  dialog?.addEventListener('click', () => dialog.close());
+</script>

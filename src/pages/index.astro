@@ -1,0 +1,159 @@
+---
+import Base from '../layouts/Base.astro';
+import profile from '../data/profile.json';
+import publications from '../data/publications.json';
+
+const highlights = [
+  {
+    href: '/research',
+    icon: '🕳️',
+    title: 'Research',
+    text: 'X-ray models of the close environments of supermassive black holes.',
+  },
+  {
+    href: '/cv',
+    icon: '📄',
+    title: 'CV & Publications',
+    text: 'Academic path, from Patras and Athens to Santiago and NASA Goddard.',
+  },
+  {
+    href: '/photography',
+    icon: '📷',
+    title: 'Photography',
+    text: 'Frames collected between telescopes, cities, and mountains.',
+  },
+  {
+    href: '/podcast',
+    icon: '🎙️',
+    title: 'Not a Top 10',
+    text: 'A Greek podcast about science and technology, one season at a time.',
+  },
+];
+
+const latestPubs = publications.slice(0, 2);
+---
+
+<Base>
+  <section class="hero">
+    <div class="starfield" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <span class="kicker">{profile.role} · {profile.affiliation}</span>
+      <h1>Hi, I'm {profile.firstName} — I study how supermassive black holes light up in X-rays.</h1>
+      <p class="lead muted">{profile.tagline}</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/research">Explore my research</a>
+        <a class="btn btn-ghost" href={`mailto:${profile.email}`}>Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <div class="container about-grid">
+      <div class="reveal">
+        <span class="kicker">About</span>
+        <h2>A short introduction</h2>
+        <p>{profile.bio}</p>
+      </div>
+      <aside class="reveal">
+        <img
+          class="portrait"
+          src="/portrait.jpg"
+          alt="George Dimopoulos in the mountains, snowy Andean peaks behind him"
+          width="720"
+          height="720"
+        />
+        <div class="facts card">
+        <h3>At a glance</h3>
+        <ul>
+          <li><strong>Now:</strong> {profile.role}, {profile.affiliation}</li>
+          <li><strong>Field:</strong> High-energy astrophysics, AGN</li>
+          <li><strong>PhD:</strong> Astrophysics, Universidad Diego Portales, Santiago (2025)</li>
+          <li><strong>Based in:</strong> {profile.location}</li>
+        </ul>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section" id="explore" style="background: var(--bg-soft);">
+    <div class="container">
+      <span class="kicker reveal">Explore</span>
+      <h2 class="reveal">Around the site</h2>
+      <div class="card-grid">
+        {highlights.map((h) => (
+          <a class="card reveal" href={h.href}>
+            <span class="card-icon" aria-hidden="true">{h.icon}</span>
+            <h3>{h.title}</h3>
+            <p>{h.text}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="latest">
+    <div class="container">
+      <span class="kicker reveal">Recent work</span>
+      <h2 class="reveal">Latest publications</h2>
+      <ul class="pub-list">
+        {latestPubs.map((pub) => (
+          <li class="reveal">
+            <p class="pub-title">{pub.title}</p>
+            <p class="pub-meta">
+              {pub.authors} · <span class="journal">{pub.journal}</span> · {pub.year}
+            </p>
+          </li>
+        ))}
+      </ul>
+      <p class="reveal"><a href="/cv#publications">All publications →</a></p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4.5rem, 12vw, 8.5rem);
+    background:
+      radial-gradient(ellipse 90% 70% at 70% -10%, var(--accent-soft), transparent 60%),
+      var(--bg);
+  }
+
+  .hero-inner { position: relative; max-width: 780px; }
+
+  .lead { font-size: clamp(1.05rem, 2.4vw, 1.25rem); max-width: 42ch; }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.8rem;
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+  }
+
+  .portrait {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    margin-bottom: 1.1rem;
+  }
+
+  .facts ul { list-style: none; margin: 0; padding: 0; }
+  .facts li { padding-block: 0.45rem; border-bottom: 1px solid var(--border); font-size: 0.95rem; }
+  .facts li:last-child { border-bottom: none; }
+
+  @media (max-width: 760px) {
+    .about-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  }
+</style>

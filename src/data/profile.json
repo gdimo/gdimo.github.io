@@ -1,0 +1,20 @@
+{
+  "name": "George Dimopoulos",
+  "firstName": "George",
+  "title": "Astrophysicist",
+  "role": "NASA Postdoctoral Fellow",
+  "affiliation": "NASA Goddard Space Flight Center",
+  "tagline": "Studying the close environments of supermassive black holes through X-ray eyes.",
+  "bio": "I am an astrophysicist working on the high-energy view of accreting supermassive black holes. Since October 2025 I am a NASA Postdoctoral Fellow at Goddard Space Flight Center, where I develop realistic X-ray models to probe the gas and dust in the immediate surroundings of active galactic nuclei. I completed my PhD in Astrophysics in 2025 at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, in Santiago, Chile, working with Prof. Claudio Ricci. Away from the telescope, I co-host the Greek science & technology podcast Not a Top 10 and carry a camera almost everywhere.",
+  "email": "gd@gdimopoulos.eu",
+  "location": "Washington, DC area, USA",
+  "social": {
+    "github": "https://github.com/gdimo",
+    "twitter": "https://twitter.com/astro_giorgos",
+    "podcast": "https://notatop10.fm",
+    "spotify": "https://open.spotify.com/show/43iob5LmctJa54VtuqzFmo",
+    "applePodcasts": "https://podcasts.apple.com/podcast/not-a-top-10/id1551089699",
+    "youtube": "https://www.youtube.com/@NotATop10",
+    "ads": "https://ui.adsabs.harvard.edu/search/q=author%3A%22Dimopoulos%2C%20G.%22&sort=date%20desc"
+  }
+}
