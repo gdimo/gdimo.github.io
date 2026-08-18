@@ -55,13 +55,15 @@ import profile from '../data/profile.json';
       <ul class="pub-list">
         {publications.map((pub) => (
           <li class="reveal">
-            <p class="pub-title">{pub.title}</p>
+            <p class="pub-title">
+              {pub.link ? <a href={pub.link} rel="noopener">{pub.title}</a> : pub.title}
+            </p>
             <p class="pub-meta">
               {pub.authors} · <span class="journal">{pub.journal}</span> · {pub.year}
             </p>
             {(pub.link || pub.arxiv) && (
               <p class="pub-links">
-                {pub.link && <a href={pub.link} rel="noopener">Journal</a>}
+                {pub.link && <a href={pub.link} rel="noopener">ADS ↗</a>}
                 {pub.arxiv && <a href={pub.arxiv} rel="noopener">arXiv</a>}
               </p>
             )}

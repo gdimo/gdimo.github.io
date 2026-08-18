@@ -98,7 +98,9 @@ const latestPubs = publications.slice(0, 2);
       <ul class="pub-list">
         {latestPubs.map((pub) => (
           <li class="reveal">
-            <p class="pub-title">{pub.title}</p>
+            <p class="pub-title">
+              {pub.link ? <a href={pub.link} rel="noopener">{pub.title}</a> : pub.title}
+            </p>
             <p class="pub-meta">
               {pub.authors} · <span class="journal">{pub.journal}</span> · {pub.year}
             </p>

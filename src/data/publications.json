@@ -1,26 +1,50 @@
 [
   {
+    "title": "XRISM Resolves the Circum-nuclear Environment of NGC 4945",
+    "authors": "P. G. Boorman, P. Gandhi, Y. Ueda, et al. (incl. G. Dimopoulos)",
+    "journal": "arXiv e-print",
+    "year": 2026,
+    "link": "https://ui.adsabs.harvard.edu/abs/2026arXiv260802294B/abstract",
+    "arxiv": null
+  },
+  {
+    "title": "Extreme Variability Reveals How the Eddington Ratio Regulates Coronal Power in Active Galactic Nuclei",
+    "authors": "A. Jana, C. Ricci, F. E. Bauer, et al. (incl. G. Dimopoulos)",
+    "journal": "The Astrophysical Journal Letters",
+    "year": 2026,
+    "link": "https://ui.adsabs.harvard.edu/abs/2026ApJ..1007L...4J/abstract",
+    "arxiv": null
+  },
+  {
+    "title": "Multiwavelength properties of changing-state active galactic nuclei: I. The evolution of soft excess and X-ray continuum",
+    "authors": "A. Jana, C. Ricci, A. Tortosa, et al. (incl. G. Dimopoulos)",
+    "journal": "Astronomy & Astrophysics",
+    "year": 2026,
+    "link": "https://ui.adsabs.harvard.edu/abs/2026A%26A...707A.213J/abstract",
+    "arxiv": null
+  },
+  {
+    "title": "The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models",
+    "authors": "G. Dimopoulos, C. Ricci, S. Paltani",
+    "journal": "The Astrophysical Journal",
+    "year": 2025,
+    "link": "https://ui.adsabs.harvard.edu/abs/2025ApJ...992...64D/abstract",
+    "arxiv": null
+  },
+  {
     "title": "The Fe Kα Compton shoulder in accreting supermassive black holes",
-    "authors": "G. Dimopoulos et al.",
+    "authors": "G. Dimopoulos, C. Ricci, S. Paltani",
     "journal": "Monthly Notices of the Royal Astronomical Society",
     "year": 2024,
-    "link": null,
+    "link": "https://ui.adsabs.harvard.edu/abs/2024MNRAS.532.4369D/abstract",
     "arxiv": null
   },
   {
-    "title": "On the circumnuclear environments of accreting supermassive black holes",
-    "authors": "G. Dimopoulos et al.",
-    "journal": "Submitted",
-    "year": 2025,
-    "link": null,
-    "arxiv": null
-  },
-  {
-    "title": "The correlation between millimeter and X-ray emission in accreting black holes",
-    "authors": "Collaboration incl. G. Dimopoulos",
-    "journal": "The Astrophysical Journal",
+    "title": "A Tight Correlation between Millimeter and X-Ray Emission in Accreting Massive Black Holes from <100 mas Resolution ALMA Observations",
+    "authors": "C. Ricci, C.-S. Chang, T. Kawamuro, et al. (incl. G. Dimopoulos)",
+    "journal": "The Astrophysical Journal Letters",
     "year": 2023,
-    "link": null,
+    "link": "https://ui.adsabs.harvard.edu/abs/2023ApJ...952L..28R/abstract",
     "arxiv": null
   }
 ]
