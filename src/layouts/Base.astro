@@ -25,6 +25,24 @@ const pageTitle = title ? `${title} · ${profile.name}` : `${profile.name} — $
     <meta property="og:type" content="website" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+        name: profile.name,
+        jobTitle: profile.role,
+        worksFor: { '@type': 'Organization', name: profile.affiliation },
+        email: `mailto:${profile.email}`,
+        url: Astro.site?.href,
+        sameAs: [
+          profile.social.orcid,
+          profile.social.github,
+          profile.social.twitter,
+          profile.social.podcast,
+        ],
+      })}
+    />
     <script is:inline>
       // Apply theme before first paint to avoid a flash of the wrong theme.
       (() => {
