@@ -45,6 +45,11 @@
       "name": "RXToPo",
       "tagline": "Reprocessed emission from a dusty torus with a polar hollow cone.",
       "note": null,
+      "figure": {
+        "src": "/figures/rxtopo-geometry.svg",
+        "alt": "Schematic of the RXToPo geometry: a central black hole and corona, a dusty torus of inner radius r and outer radius R, and a polar hollow cone, with the inclination angle θ, the torus half-opening angle φ and the cone outer boundary ξ_o marked.",
+        "caption": "Geometry of the RXToPo model. Figure from Dimopoulos, Ricci & Paltani (2025), ApJ 992, 64."
+      },
       "files": [
         { "flavour": "ALL", "description": "All photons (continuum + reprocessed)", "file": "rxtopo_all_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_all_.mod.gz?download=1", "size": "1.2 GB" },
         { "flavour": "RPRC", "description": "All reprocessed photons", "file": "rxtopo_rpr_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_rpr_.mod.gz?download=1", "size": "863.8 MB" },
@@ -58,6 +63,11 @@
       "name": "RXagn1",
       "tagline": "Full circumnuclear AGN model including a dusty torus, polar hollow cone, accretion disk, and broad line region.",
       "note": "RXagn1 differs from RXToPo only in geometry. All other technical details — continuum, energy range, resolution, composition and parameters — are identical.",
+      "figure": {
+        "src": "/figures/rxagn1-geometry.svg",
+        "alt": "Schematic of the RXagn1 geometry: as RXToPo, with a central black hole, corona, dusty torus and polar hollow cone, and in addition an accretion disk (AD) and a broad line region (BLR) close to the black hole.",
+        "caption": "Geometry of the RXagn1 model, adding the accretion disk and broad line region. Figure from Dimopoulos, Ricci & Paltani (2025), ApJ 992, 64."
+      },
       "files": [
         { "flavour": "ALL", "description": "All photons (continuum + reprocessed)", "file": "rxagn1_all_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_all_.mod.gz?download=1", "size": "1.1 GB" },
         { "flavour": "RPRC", "description": "All reprocessed photons", "file": "rxagn1_rpr_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_rpr_.mod.gz?download=1", "size": "908.9 MB" },

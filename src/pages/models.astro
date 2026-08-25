@@ -76,6 +76,14 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
         <h2 class="reveal">{family.name}</h2>
         <p class="reveal narrow">{family.tagline}</p>
         {family.note && <p class="reveal muted narrow note">{family.note}</p>}
+        {family.figure && (
+          <figure class="geometry reveal">
+            <div class="geometry-plate">
+              <img src={family.figure.src} alt={family.figure.alt} loading="lazy" />
+            </div>
+            <figcaption>{family.figure.caption}</figcaption>
+          </figure>
+        )}
         <div class="table-wrap reveal">
           <table class="data-table downloads">
             <thead>
@@ -223,6 +231,30 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
   .pending { max-width: 62ch; margin-top: 1.6rem; }
 
   h2 { margin-top: 0; }
+
+  .geometry {
+    margin: 0 0 1.6rem;
+    max-width: 640px;
+  }
+
+  /* Paper figures are drawn black-on-white, so the plate stays light in
+     both themes rather than glaring or inverting the diagram. */
+  .geometry-plate {
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.1rem;
+    box-shadow: var(--shadow);
+  }
+
+  .geometry img { width: 100%; height: auto; }
+
+  .geometry figcaption {
+    margin-top: 0.7rem;
+    font-size: 0.88rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
 
   .table-wrap {
     overflow-x: auto;
