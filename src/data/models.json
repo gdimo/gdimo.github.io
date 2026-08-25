@@ -1,0 +1,81 @@
+{
+  "code": "RefleX 3.0",
+  "intro": "A set of X-ray table models describing the reprocessing of radiation in the circumnuclear environment of accreting supermassive black holes, computed with the ray-tracing radiative-transfer code RefleX 3.0. Each table is a standard XSPEC table model.",
+  "provenance": "Developed at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, Santiago, Chile, with the support of ANID Beca Doctorado Nacional 21211606.",
+  "dataset": {
+    "conceptDoi": "10.5281/zenodo.22082873",
+    "versionDoi": "10.5281/zenodo.22082874",
+    "version": "1.0",
+    "citation": "Dimopoulos, G., Ricci, C., & Paltani, S. (2026). X-ray table models for the circumnuclear environment of accreting supermassive black holes, computed with RefleX (Version 1.0). Zenodo. https://doi.org/10.5281/zenodo.22082873",
+    "license": "CC BY 4.0"
+  },
+  "overview": [
+    { "property": "Input continuum", "value": "Cutoff power-law; cutoff energy fixed at 200 keV" },
+    { "property": "Energy range", "value": "0.3 – 300 keV" },
+    { "property": "Spectral resolution", "value": "ΔE = 20 eV (4 eV retained in the Fe Kα, Fe Kβ/edge and Ni Kα regions)" },
+    { "property": "Composition", "value": "Lodders et al. (2009) abundances" },
+    { "property": "Physical processes", "value": "Rayleigh scattering, Compton scattering on bound electrons, dust grain interactions" }
+  ],
+  "flavours": [
+    { "code": "all", "label": "ALL", "description": "All photons (continuum + reprocessed)" },
+    { "code": "rpr", "label": "RPRC", "description": "All reprocessed photons" },
+    { "code": "sct", "label": "SCAT", "description": "Scattered photons only; no fluorescence emission" },
+    { "code": "flo", "label": "FLUO", "description": "Fluorescence emission (including subsequent scattering)" },
+    { "code": "cnt", "label": "CNT", "description": "Transmitted continuum (no interaction with the medium)" }
+  ],
+  "flavourRelation": "ALL = CNT + RPRC   and   RPRC = SCAT + FLUO",
+  "parameters": [
+    { "name": "PhoIndex", "range": "1.6 – 2.4", "description": "Photon index Γ of the input cutoff power-law continuum" },
+    { "name": "NHeq", "range": "log 22.0 – 25.5", "description": "Equatorial hydrogen column density of the dusty torus" },
+    { "name": "CFtor", "range": "0.1 – 0.9", "description": "Covering factor of the torus; ratio of inner cutout radius r to outer radius R, with CFtor = sin(φ)" },
+    { "name": "NHpol", "range": "log 22.0 – 24.0", "description": "Hydrogen column density of the polar hollow cone, measured along the inner cone surface" },
+    { "name": "Inclination", "range": "1 – 89 deg", "description": "Viewing angle θ of the system (1 = face-on, 89 = edge-on), sampled in steps of 2°" },
+    { "name": "z", "range": "0 – 5", "description": "Redshift" },
+    { "name": "norm", "range": "0 – 1e20", "description": "Photon flux of the input continuum at 1 keV (ph keV⁻¹ cm⁻² s⁻¹)" }
+  ],
+  "coneNote": "The hollow cone is collimated by the torus. Its inner boundary angle is set to ξ_max = φ + 1° (to avoid overlap), where φ = arcsin(CFtor). The cone has a fixed angular width of 10°, so its outer boundary is ξ_o = ξ_max + 10°. The cone column density NHpol is a free parameter independent of CFtor.",
+  "usageNote": "The tables can be loaded while still gzip-compressed, as shown above. XSPEC decompresses them into memory each time they are read, so if you fit repeatedly it is faster to decompress once with gunzip and point XSPEC at the resulting .mod file.",
+  "usage": [
+    { "label": "Typical usage with the ALL table", "code": "model tbabs * atable{rxtopo_all_.mod.gz}" },
+    { "label": "Reprocessed component with additional soft emission and line components", "code": "model tbabs * (atable{rxtopo_rpr_.mod.gz} + apec + zgauss)" }
+  ],
+  "families": [
+    {
+      "id": "rxtopo",
+      "name": "RXToPo",
+      "tagline": "Reprocessed emission from a dusty torus with a polar hollow cone.",
+      "note": null,
+      "files": [
+        { "flavour": "ALL", "description": "All photons (continuum + reprocessed)", "file": "rxtopo_all_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_all_.mod.gz?download=1", "size": "1.2 GB" },
+        { "flavour": "RPRC", "description": "All reprocessed photons", "file": "rxtopo_rpr_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_rpr_.mod.gz?download=1", "size": "863.8 MB" },
+        { "flavour": "SCAT", "description": "Scattered photons only (no fluorescence)", "file": "rxtopo_sct_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_sct_.mod.gz?download=1", "size": "834.2 MB" },
+        { "flavour": "FLUO", "description": "Fluorescent photons only", "file": "rxtopo_flo_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_flo_.mod.gz?download=1", "size": "182.0 MB" },
+        { "flavour": "CNT", "description": "Transmitted continuum", "file": "rxtopo_cnt_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxtopo_cnt_.mod.gz?download=1", "size": "1.0 GB" }
+      ]
+    },
+    {
+      "id": "rxagn1",
+      "name": "RXagn1",
+      "tagline": "Full circumnuclear AGN model including a dusty torus, polar hollow cone, accretion disk, and broad line region.",
+      "note": "RXagn1 differs from RXToPo only in geometry. All other technical details — continuum, energy range, resolution, composition and parameters — are identical.",
+      "files": [
+        { "flavour": "ALL", "description": "All photons (continuum + reprocessed)", "file": "rxagn1_all_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_all_.mod.gz?download=1", "size": "1.1 GB" },
+        { "flavour": "RPRC", "description": "All reprocessed photons", "file": "rxagn1_rpr_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_rpr_.mod.gz?download=1", "size": "908.9 MB" },
+        { "flavour": "SCAT", "description": "Scattered photons only (no fluorescence)", "file": "rxagn1_sct_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_sct_.mod.gz?download=1", "size": "871.8 MB" },
+        { "flavour": "FLUO", "description": "Fluorescent photons only", "file": "rxagn1_flo_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_flo_.mod.gz?download=1", "size": "233.3 MB" },
+        { "flavour": "CNT", "description": "Transmitted continuum", "file": "rxagn1_cnt_.mod.gz", "url": "https://zenodo.org/records/22082874/files/rxagn1_cnt_.mod.gz?download=1", "size": "990.1 MB" }
+      ]
+    }
+  ],
+  "tool": {
+    "name": "Line-of-sight NH calculator",
+    "description": "A command-line utility for computing the line-of-sight column density NH_los for the RXToPo and RXagn1 models using RefleX v3. It provides a simple front-end to the REFLEXINO procedure described in Appendix B of Dimopoulos, Ricci & Paltani (2025), hiding the internal complexity of RefleX and enabling quick calculations for individual sources or batch runs.",
+    "url": "https://github.com/gdimo/reflex-los-calculator"
+  },
+  "totalCoverageNote": "In both models the total covering fraction of obscuring material is not equal to CFtor alone. The polar cone also contributes solid angle coverage and should be accounted for when computing the total covering factor.",
+  "references": [
+    { "text": "Dimopoulos, Ricci & Paltani, ApJ 992, 64 (2025)", "url": "https://doi.org/10.3847/1538-4357/adfd52" },
+    { "text": "Paltani & Ricci, A&A 607, A31 (2017) — the RefleX code", "url": "https://doi.org/10.1051/0004-6361/201629623" },
+    { "text": "Ricci & Paltani, ApJ 945, 55 (2023)", "url": "https://doi.org/10.3847/1538-4357/acb5a6" }
+  ]
+}

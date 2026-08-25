@@ -1,0 +1,325 @@
+---
+import Base from '../layouts/Base.astro';
+import models from '../data/models.json';
+import profile from '../data/profile.json';
+
+const anyDownloads = models.families.some((f) => f.files.some((file) => file.url));
+---
+
+<Base
+  title="Table Models"
+  description="RXToPo and RXagn1 — downloadable XSPEC table models for the circumnuclear environment of accreting supermassive black holes, computed with RefleX."
+>
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Downloads</span>
+      <h1>XSPEC table models</h1>
+      <p class="intro muted">{models.intro}</p>
+      <p class="provenance muted">{models.provenance}</p>
+      {!anyDownloads && (
+        <p class="pending card">
+          The model files are being prepared for release and the download links will appear
+          here shortly. In the meantime, feel free to{' '}
+          <a href={`mailto:${profile.email}`}>get in touch</a> if you would like early access.
+        </p>
+      )}
+    </div>
+  </section>
+
+  <!-- How the models are computed -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="reveal">How the models are computed</h2>
+      <div class="table-wrap reveal">
+        <table class="data-table">
+          <tbody>
+            {models.overview.map((row) => (
+              <tr>
+                <th scope="row">{row.property}</th>
+                <td>{row.value}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spectral components -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="reveal">Spectral components</h2>
+      <p class="reveal muted narrow">
+        Five spectral components are provided for each model, based on the interaction
+        history of the photons.
+      </p>
+      <div class="table-wrap reveal">
+        <table class="data-table">
+          <tbody>
+            {models.flavours.map((flavour) => (
+              <tr>
+                <th scope="row"><code>{flavour.code}</code> <span class="flav-label">{flavour.label}</span></th>
+                <td>{flavour.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="relation reveal"><code>{models.flavourRelation}</code></p>
+    </div>
+  </section>
+
+  <!-- Model families and downloads -->
+  {models.families.map((family) => (
+    <section class="section" id={family.id} style="padding-top: 0;">
+      <div class="container">
+        <h2 class="reveal">{family.name}</h2>
+        <p class="reveal narrow">{family.tagline}</p>
+        {family.note && <p class="reveal muted narrow note">{family.note}</p>}
+        <div class="table-wrap reveal">
+          <table class="data-table downloads">
+            <thead>
+              <tr>
+                <th scope="col">Component</th>
+                <th scope="col">Description</th>
+                <th scope="col">File</th>
+                <th scope="col">Size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {family.files.map((file) => (
+                <tr>
+                  <th scope="row">{file.flavour}</th>
+                  <td>{file.description}</td>
+                  <td class="filename">
+                    {file.url ? (
+                      <a href={file.url} rel="noopener">{file.file}</a>
+                    ) : (
+                      <span class="unavailable">{file.file}</span>
+                    )}
+                  </td>
+                  <td class="size">{file.size ?? '—'}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- Parameters -->
+  <section class="section" id="parameters" style="background: var(--bg-soft);">
+    <div class="container">
+      <h2 class="reveal">Parameters</h2>
+      <p class="reveal muted narrow">
+        All spectral components of both models share the same free parameters.
+      </p>
+      <div class="table-wrap reveal">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th scope="col">Parameter</th>
+              <th scope="col">Range</th>
+              <th scope="col">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            {models.parameters.map((param) => (
+              <tr>
+                <th scope="row"><code>{param.name}</code></th>
+                <td class="range">{param.range}</td>
+                <td>{param.description}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <blockquote class="reveal">
+        <strong>Note on the polar cone opening angle.</strong> {models.coneNote}
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section class="section">
+    <div class="container">
+      <h2 class="reveal">Usage in XSPEC</h2>
+      <p class="reveal muted narrow">
+        Load a downloaded table as a model component.
+      </p>
+      {models.usage.map((example) => (
+        <div class="usage reveal">
+          <p class="usage-label muted">{example.label}</p>
+          <pre><code>{example.code}</code></pre>
+        </div>
+      ))}
+      <p class="reveal muted narrow usage-note">{models.usageNote}</p>
+    </div>
+  </section>
+
+  <!-- Citation -->
+  <section class="section" id="cite" style="padding-top: 0;">
+    <div class="container">
+      <h2 class="reveal">Cite this dataset</h2>
+      <p class="reveal muted narrow">
+        The models are archived on Zenodo under {models.dataset.license} and have a permanent
+        DOI. Please cite them alongside the paper if they are useful in your work.
+      </p>
+      <div class="usage reveal">
+        <pre><code>{models.dataset.citation}</code></pre>
+      </div>
+      <p class="reveal muted doi-note">
+        DOI (all versions):{' '}
+        <a href={`https://doi.org/${models.dataset.conceptDoi}`} rel="noopener">
+          {models.dataset.conceptDoi}
+        </a>{' '}· this version (v{models.dataset.version}):{' '}
+        <a href={`https://doi.org/${models.dataset.versionDoi}`} rel="noopener">
+          {models.dataset.versionDoi}
+        </a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Tool + notes -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="card-grid">
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">🧮</span>
+          <h3>{models.tool.name}</h3>
+          <p>{models.tool.description}</p>
+          <p><a href={models.tool.url} rel="noopener">View on GitHub →</a></p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">⚠️</span>
+          <h3>Total sky coverage</h3>
+          <p>{models.totalCoverageNote}</p>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">📖</span>
+          <h3>References</h3>
+          <ul class="refs">
+            {models.references.map((ref) => (
+              <li><a href={ref.url} rel="noopener">{ref.text}</a></li>
+            ))}
+          </ul>
+        </div>
+      </div>
+      <p class="reveal muted contact">
+        Found a problem, or need a configuration that isn't here?{' '}
+        <a href={`mailto:${profile.email}`}>Email me</a> — I'm happy to help.
+      </p>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: 62ch; font-size: 1.1rem; }
+  .provenance { max-width: 62ch; font-size: 0.92rem; }
+  .narrow { max-width: 62ch; }
+  .note { font-size: 0.95rem; }
+
+  .pending { max-width: 62ch; margin-top: 1.6rem; }
+
+  h2 { margin-top: 0; }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--bg-elev);
+    box-shadow: var(--shadow);
+  }
+
+  table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    min-width: 560px;
+  }
+
+  .data-table th,
+  .data-table td {
+    text-align: left;
+    padding: 0.8rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+
+  .data-table thead th {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: var(--bg-soft);
+    white-space: nowrap;
+  }
+
+  .data-table tbody tr:last-child th,
+  .data-table tbody tr:last-child td { border-bottom: none; }
+
+  .data-table tbody tr:hover { background: var(--accent-soft); }
+
+  .data-table tbody th { font-weight: 650; white-space: nowrap; }
+
+  .flav-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-left: 0.35rem;
+  }
+
+  .filename { font-family: var(--font-mono); font-size: 0.85rem; }
+  .filename .unavailable { color: var(--muted); }
+  .range { font-family: var(--font-mono); font-size: 0.85rem; color: var(--muted); white-space: nowrap; }
+  .size { white-space: nowrap; color: var(--muted); }
+
+  .relation {
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .relation code { font-size: 0.9rem; white-space: pre; }
+
+  blockquote {
+    margin: 1.5rem 0 0;
+    padding: 1rem 1.3rem;
+    border-inline-start: 3px solid var(--amber);
+    background: var(--bg-elev);
+    border-radius: 0 12px 12px 0;
+    font-size: 0.95rem;
+    max-width: 72ch;
+  }
+
+  .usage { margin-bottom: 1.4rem; }
+  .doi-note { font-size: 0.9rem; }
+  .usage-note { font-size: 0.9rem; margin-top: 0.4rem; }
+  .usage-label { font-size: 0.9rem; margin-bottom: 0.4rem; }
+
+  pre {
+    margin: 0;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow-x: auto;
+  }
+
+  pre code { background: none; border: none; padding: 0; font-size: 0.9rem; }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.86em;
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 0.1em 0.35em;
+  }
+
+  .refs { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+  .refs li { margin-bottom: 0.5rem; }
+
+  .contact { margin-top: 1.8rem; font-size: 0.95rem; }
+</style>
