@@ -6,7 +6,8 @@
     "conceptDoi": "10.5281/zenodo.22082873",
     "versionDoi": "10.5281/zenodo.22082874",
     "version": "1.0",
-    "citation": "Dimopoulos, G., Ricci, C., & Paltani, S. (2026). X-ray table models for the circumnuclear environment of accreting supermassive black holes, computed with RefleX (Version 1.0). Zenodo. https://doi.org/10.5281/zenodo.22082873",
+    "citation": "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52",
+    "paperDoi": "10.3847/1538-4357/adfd52",
     "license": "CC BY 4.0"
   },
   "overview": [

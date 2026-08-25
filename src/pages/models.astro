@@ -169,21 +169,18 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
   <!-- Citation -->
   <section class="section" id="cite" style="padding-top: 0;">
     <div class="container">
-      <h2 class="reveal">Cite this dataset</h2>
+      <h2 class="reveal">How to cite</h2>
       <p class="reveal muted narrow">
-        The models are archived on Zenodo under {models.dataset.license} and have a permanent
-        DOI. Please cite them alongside the paper if they are useful in your work.
+        If these models are useful in your work, please cite the paper in which they are
+        presented:
       </p>
       <div class="usage reveal">
         <pre><code>{models.dataset.citation}</code></pre>
       </div>
       <p class="reveal muted doi-note">
-        DOI (all versions):{' '}
+        The model files are archived on Zenodo under {models.dataset.license} —{' '}
         <a href={`https://doi.org/${models.dataset.conceptDoi}`} rel="noopener">
-          {models.dataset.conceptDoi}
-        </a>{' '}· this version (v{models.dataset.version}):{' '}
-        <a href={`https://doi.org/${models.dataset.versionDoi}`} rel="noopener">
-          {models.dataset.versionDoi}
+          doi:{models.dataset.conceptDoi}
         </a>
       </p>
     </div>
