@@ -8,6 +8,7 @@
     "version": "1.0",
     "citation": "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52",
     "paperDoi": "10.3847/1538-4357/adfd52",
+    "bibtex": "@ARTICLE{2025ApJ...992...64D,\n       author = {{Dimopoulos}, G. and {Ricci}, C. and {Paltani}, S.},\n        title = \"{The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models}\",\n      journal = {\\apj},\n     keywords = {Supermassive black holes, Radiative transfer simulations, X-ray active galactic nuclei, 1663, 1967, 2035, High Energy Astrophysical Phenomena},\n         year = 2025,\n        month = oct,\n       volume = {992},\n       number = {1},\n          eid = {64},\n        pages = {64},\n          doi = {10.3847/1538-4357/adfd52},\narchivePrefix = {arXiv},\n       eprint = {2605.06794},\n primaryClass = {astro-ph.HE},\n       adsurl = {https://ui.adsabs.harvard.edu/abs/2025ApJ...992...64D},\n      adsnote = {Provided by the SAO/NASA Astrophysics Data System}\n}",
     "license": "CC BY 4.0"
   },
   "overview": [
