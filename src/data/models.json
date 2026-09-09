@@ -59,7 +59,11 @@
       "tagline": "A pure dusty torus, computed on a high-resolution spectral and parameter grid.",
       "summary": "Just the torus — no polar cone — at 2 eV spectral resolution, with a free high-energy cutoff.",
       "note": "RXTorusHR contains only the dusty torus: there is no polar hollow cone, and therefore no NHpol parameter. Compared with RXToPo it is computed at ten times finer spectral resolution below 10 keV, over a wider range of photon index and covering factor, and with the high-energy cutoff left free.",
-      "figure": null,
+      "figure": {
+        "src": "/figures/rxtorushr-geometry.svg",
+        "alt": "Schematic of the RXTorusHR geometry: a central black hole with a spherical corona above and below the disk plane, surrounded by a dusty torus of tube radius r at distance R, with the inner edge at the sublimation radius and the viewing angle θ marked.",
+        "caption": "Geometry of the RXTorusHR model: a single dusty torus, with the covering factor set by CFtor = r / R. Schematic drawn from the model configuration."
+      },
       "overview": [
         { "property": "Geometry", "value": "A single dusty torus around the central X-ray source; no polar cone" },
         { "property": "Input continuum", "value": "Cutoff power-law with the cutoff energy left free (50 – 350 keV)" },
