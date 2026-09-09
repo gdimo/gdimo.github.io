@@ -1,14 +1,27 @@
 ---
+import data from '../data/models.json';
+
 const nav = [
   { href: '/', label: 'Home' },
   { href: '/research', label: 'Research' },
   { href: '/cv', label: 'CV & Publications' },
-  { href: '/models', label: 'Models' },
+  {
+    href: '/models',
+    label: 'Models',
+    children: [
+      { href: '/models', label: 'All models' },
+      ...data.models.map((model) => ({
+        href: `/models/${model.id}`,
+        label: model.name,
+      })),
+    ],
+  },
   { href: '/photography', label: 'Photography' },
   { href: '/podcast', label: 'Podcast' },
 ];
 
 const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const inSection = (href: string) => href !== '/' && current.startsWith(href);
 ---
 
 <header class="site-header">
@@ -19,16 +32,41 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
         <span></span><span></span><span></span>
       </button>
       <ul class="nav-list">
-        {nav.map((item) => (
-          <li>
-            <a
-              href={item.href}
-              aria-current={current === (item.href === '/' ? '/' : item.href) ? 'page' : undefined}
-            >
-              {item.label}
-            </a>
-          </li>
-        ))}
+        {nav.map((item) =>
+          item.children ? (
+            <li class="has-dropdown">
+              <button
+                class="nav-trigger"
+                type="button"
+                aria-expanded="false"
+                aria-current={inSection(item.href) ? 'page' : undefined}
+              >
+                {item.label}
+                <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden="true">
+                  <path d="M2 4.5L6 8.5L10 4.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <ul class="dropdown">
+                {item.children.map((child) => (
+                  <li>
+                    <a href={child.href} aria-current={current === child.href ? 'page' : undefined}>
+                      {child.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ) : (
+            <li>
+              <a
+                href={item.href}
+                aria-current={current === (item.href === '/' ? '/' : item.href) ? 'page' : undefined}
+              >
+                {item.label}
+              </a>
+            </li>
+          )
+        )}
         <li>
           <button class="theme-toggle" aria-label="Toggle color theme" title="Toggle theme">
             <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -101,6 +139,63 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
     background: var(--accent-soft);
   }
 
+  /* ---- Dropdown ---- */
+  .has-dropdown { position: relative; }
+
+  .nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.45rem 0.75rem;
+    border: none;
+    border-radius: 999px;
+    background: none;
+    font: inherit;
+    font-weight: 550;
+    font-size: 0.95rem;
+    color: var(--muted);
+    cursor: pointer;
+  }
+
+  .nav-trigger:hover,
+  .nav-trigger[aria-expanded='true'] {
+    color: var(--text);
+    background: var(--accent-soft);
+  }
+
+  .nav-trigger[aria-current='page'] {
+    color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .nav-trigger svg { transition: transform 0.18s ease; }
+  .nav-trigger[aria-expanded='true'] svg { transform: rotate(180deg); }
+
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 0.45rem);
+    left: 0;
+    min-width: 190px;
+    list-style: none;
+    margin: 0;
+    padding: 0.35rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lift);
+    display: none;
+    z-index: 60;
+  }
+
+  .dropdown.open { display: block; }
+
+  .dropdown a {
+    display: block;
+    padding: 0.5rem 0.75rem;
+    border-radius: 8px;
+    white-space: nowrap;
+  }
+
   .theme-toggle {
     display: grid;
     place-items: center;
@@ -165,6 +260,24 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
 
     .nav-list a { border-radius: 10px; padding: 0.6rem 0.9rem; }
 
+    /* Inside the hamburger menu the submenu is a plain indented list. */
+    .nav-trigger { width: 100%; justify-content: space-between; padding: 0.6rem 0.9rem; }
+
+    .dropdown {
+      position: static;
+      display: block;
+      min-width: 0;
+      margin: 0 0 0.2rem 0.6rem;
+      padding: 0;
+      border: none;
+      border-inline-start: 1px solid var(--border);
+      border-radius: 0;
+      box-shadow: none;
+      background: none;
+    }
+
+    .dropdown a { font-size: 0.92rem; padding-block: 0.45rem; }
+
     .theme-toggle { margin: 0.3rem 0 0 0.35rem; }
   }
 </style>
@@ -175,6 +288,41 @@ const current = Astro.url.pathname.replace(/\/$/, '') || '/';
   btn?.addEventListener('click', () => {
     const open = list?.classList.toggle('open');
     btn.setAttribute('aria-expanded', String(Boolean(open)));
+  });
+
+  // Dropdown menus: click to open, close on outside click or Escape.
+  // On mobile the submenu is always shown inline, so the trigger is inert there.
+  const isMobile = () => window.matchMedia('(max-width: 760px)').matches;
+
+  document.querySelectorAll<HTMLButtonElement>('.nav-trigger').forEach((trigger) => {
+    const menu = trigger.nextElementSibling as HTMLElement | null;
+    if (!menu) return;
+
+    trigger.addEventListener('click', (event) => {
+      if (isMobile()) return;
+      event.stopPropagation();
+      const open = menu.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', String(open));
+    });
+
+    trigger.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') {
+        menu.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  const closeDropdowns = () => {
+    document.querySelectorAll('.dropdown.open').forEach((menu) => menu.classList.remove('open'));
+    document
+      .querySelectorAll('.nav-trigger[aria-expanded="true"]')
+      .forEach((trigger) => trigger.setAttribute('aria-expanded', 'false'));
+  };
+
+  document.addEventListener('click', closeDropdowns);
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeDropdowns();
   });
 
   document.querySelector('.theme-toggle')?.addEventListener('click', () => {
