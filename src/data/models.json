@@ -156,10 +156,6 @@
         {
           "property": "Physical processes",
           "value": "Rayleigh scattering, Compton scattering on bound electrons, dust grain interactions"
-        },
-        {
-          "property": "Simulation grid",
-          "value": "8,000 RefleX runs of 2 × 10⁹ photons each, sampled in 45 inclination bins — 360,000 spectra per component"
         }
       ],
       "parameters": [
