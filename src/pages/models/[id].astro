@@ -46,6 +46,7 @@ const others = data.models.filter((m) => m.id !== model.id);
       <h1>{model.name}</h1>
       <p class="intro muted">{model.tagline}</p>
       {model.note && <p class="provenance muted note">{model.note}</p>}
+      {model.provenance && <p class="provenance muted">{model.provenance}</p>}
       {!anyDownloads && (
         <p class="pending card">
           The model files are being prepared for release and the download links will appear
