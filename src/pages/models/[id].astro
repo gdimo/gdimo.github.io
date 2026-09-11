@@ -1,21 +1,51 @@
 ---
-import Base from '../layouts/Base.astro';
-import models from '../data/models.json';
-import profile from '../data/profile.json';
+import Base from '../../layouts/Base.astro';
+import data from '../../data/models.json';
+import profile from '../../data/profile.json';
 
-const anyDownloads = models.families.some((f) => f.files.some((file) => file.url));
+export function getStaticPaths() {
+  return data.models.map((model) => ({
+    params: { id: model.id },
+    props: { model },
+  }));
+}
+
+const { model } = Astro.props;
+const shared = data.shared;
+
+// Per-model values fall back to the shared defaults.
+const overview = model.overview ?? shared.overview;
+const parameters = model.parameters ?? shared.parameters;
+const dataset = model.dataset ?? shared.dataset;
+const references = model.references ?? shared.references;
+const flavours = model.flavours ?? shared.flavours;
+
+const anyDownloads = model.files.some((file) => file.url);
+
+// Usage examples are generated from this model's own filenames so they can
+// never drift from the download table.
+const fileFor = (flavour: string) => model.files.find((f) => f.flavour === flavour)?.file;
+const usage = [
+  { label: shared.usageLabels[0], code: `model tbabs * atable{${fileFor('ALL')}}` },
+  {
+    label: shared.usageLabels[1],
+    code: `model tbabs * (atable{${fileFor('RPRC')}} + apec + zgauss)`,
+  },
+];
+
 ---
 
 <Base
-  title="Table Models"
-  description="RXToPo and RXagn1 — downloadable XSPEC table models for the circumnuclear environment of accreting supermassive black holes, computed with RefleX."
+  title={model.name}
+  description={`${model.name} — ${model.tagline} Downloadable XSPEC table models computed with RefleX.`}
 >
   <section class="section">
     <div class="container">
-      <span class="kicker">Downloads</span>
-      <h1>XSPEC table models</h1>
-      <p class="intro muted">{models.intro}</p>
-      <p class="provenance muted">{models.provenance}</p>
+      <p class="breadcrumb muted"><a href="/models">Table models</a> ／ {model.name}</p>
+      <h1>{model.name}</h1>
+      <p class="intro muted">{model.tagline}</p>
+      {model.note && <p class="provenance muted note">{model.note}</p>}
+      {model.provenance && <p class="provenance muted">{model.provenance}</p>}
       {!anyDownloads && (
         <p class="pending card">
           The model files are being prepared for release and the download links will appear
@@ -26,6 +56,58 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
     </div>
   </section>
 
+  <!-- Geometry + downloads -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      {model.figure && (
+        <figure class="geometry reveal">
+          <div
+            class="geometry-plate"
+            role="button"
+            tabindex="0"
+            aria-label={`Enlarge figure: ${model.figure.caption}`}
+            data-src={model.figure.src}
+            data-alt={model.figure.alt}
+            data-caption={model.figure.caption}
+          >
+            <img src={model.figure.src} alt={model.figure.alt} loading="lazy" />
+            <span class="zoom-badge" aria-hidden="true">⤢</span>
+          </div>
+          <figcaption>{model.figure.caption}</figcaption>
+        </figure>
+      )}
+      <h2 class="reveal">Downloads</h2>
+      <div class="table-wrap reveal">
+        <table class="data-table downloads">
+          <thead>
+            <tr>
+              <th scope="col">Component</th>
+              <th scope="col">Description</th>
+              <th scope="col">File</th>
+              <th scope="col">Size</th>
+            </tr>
+          </thead>
+          <tbody>
+            {model.files.map((file) => (
+              <tr>
+                <th scope="row">{file.flavour}</th>
+                <td>{file.description}</td>
+                <td class="filename">
+                  {file.url ? (
+                    <a href={file.url} rel="noopener">{file.file}</a>
+                  ) : (
+                    <span class="unavailable">{file.file}</span>
+                  )}
+                </td>
+                <td class="size">{file.size ?? '—'}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- How the models are computed -->
   <section class="section" style="padding-top: 0;">
     <div class="container">
@@ -33,7 +115,7 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
       <div class="table-wrap reveal">
         <table class="data-table">
           <tbody>
-            {models.overview.map((row) => (
+            {overview.map((row) => (
               <tr>
                 <th scope="row">{row.property}</th>
                 <td>{row.value}</td>
@@ -50,13 +132,13 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
     <div class="container">
       <h2 class="reveal">Spectral components</h2>
       <p class="reveal muted narrow">
-        Five spectral components are provided for each model, based on the interaction
+        {flavours.length} spectral components are provided, based on the interaction
         history of the photons.
       </p>
       <div class="table-wrap reveal">
         <table class="data-table">
           <tbody>
-            {models.flavours.map((flavour) => (
+            {flavours.map((flavour) => (
               <tr>
                 <th scope="row"><code>{flavour.code}</code> <span class="flav-label">{flavour.label}</span></th>
                 <td>{flavour.description}</td>
@@ -65,72 +147,16 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
           </tbody>
         </table>
       </div>
-      <p class="relation reveal"><code>{models.flavourRelation}</code></p>
+      <p class="relation reveal"><code>{shared.flavourRelation}</code></p>
     </div>
   </section>
-
-  <!-- Model families and downloads -->
-  {models.families.map((family) => (
-    <section class="section" id={family.id} style="padding-top: 0;">
-      <div class="container">
-        <h2 class="reveal">{family.name}</h2>
-        <p class="reveal narrow">{family.tagline}</p>
-        {family.note && <p class="reveal muted narrow note">{family.note}</p>}
-        {family.figure && (
-          <figure class="geometry reveal">
-            <div
-              class="geometry-plate"
-              role="button"
-              tabindex="0"
-              aria-label={`Enlarge figure: ${family.figure.caption}`}
-              data-src={family.figure.src}
-              data-alt={family.figure.alt}
-              data-caption={family.figure.caption}
-            >
-              <img src={family.figure.src} alt={family.figure.alt} loading="lazy" />
-              <span class="zoom-badge" aria-hidden="true">⤢</span>
-            </div>
-            <figcaption>{family.figure.caption}</figcaption>
-          </figure>
-        )}
-        <div class="table-wrap reveal">
-          <table class="data-table downloads">
-            <thead>
-              <tr>
-                <th scope="col">Component</th>
-                <th scope="col">Description</th>
-                <th scope="col">File</th>
-                <th scope="col">Size</th>
-              </tr>
-            </thead>
-            <tbody>
-              {family.files.map((file) => (
-                <tr>
-                  <th scope="row">{file.flavour}</th>
-                  <td>{file.description}</td>
-                  <td class="filename">
-                    {file.url ? (
-                      <a href={file.url} rel="noopener">{file.file}</a>
-                    ) : (
-                      <span class="unavailable">{file.file}</span>
-                    )}
-                  </td>
-                  <td class="size">{file.size ?? '—'}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </section>
-  ))}
 
   <!-- Parameters -->
   <section class="section" id="parameters" style="background: var(--bg-soft);">
     <div class="container">
       <h2 class="reveal">Parameters</h2>
       <p class="reveal muted narrow">
-        All spectral components of both models share the same free parameters.
+        All spectral components of {model.name} share the same free parameters.
       </p>
       <div class="table-wrap reveal">
         <table class="data-table">
@@ -142,7 +168,7 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
             </tr>
           </thead>
           <tbody>
-            {models.parameters.map((param) => (
+            {parameters.map((param) => (
               <tr>
                 <th scope="row"><code>{param.name}</code></th>
                 <td class="range">{param.range}</td>
@@ -152,9 +178,11 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
           </tbody>
         </table>
       </div>
-      <blockquote class="reveal">
-        <strong>Note on the polar cone opening angle.</strong> {models.coneNote}
-      </blockquote>
+      {(model.notes ?? []).map((entry) => (
+        <blockquote class="reveal">
+          <strong>{entry.title}</strong> {entry.text}
+        </blockquote>
+      ))}
     </div>
   </section>
 
@@ -165,13 +193,13 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
       <p class="reveal muted narrow">
         Load a downloaded table as a model component.
       </p>
-      {models.usage.map((example) => (
+      {usage.map((example) => (
         <div class="usage reveal">
           <p class="usage-label muted">{example.label}</p>
           <pre><code>{example.code}</code></pre>
         </div>
       ))}
-      <p class="reveal muted narrow usage-note">{models.usageNote}</p>
+      <p class="reveal muted narrow usage-note">{shared.usageNote}</p>
     </div>
   </section>
 
@@ -179,26 +207,39 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
   <section class="section" id="cite" style="padding-top: 0;">
     <div class="container">
       <h2 class="reveal">How to cite</h2>
-      <p class="reveal muted narrow">
-        If these models are useful in your work, please cite the paper in which they are
-        presented:
-      </p>
-      <div class="usage reveal">
-        <pre><code>{models.dataset.citation}</code></pre>
-      </div>
-      <p class="reveal cite-actions">
-        <button class="btn btn-ghost copy-bibtex" type="button" data-source="bibtex-source">
-          Copy BibTeX
-        </button>
-        <span class="copy-status muted" role="status" aria-live="polite"></span>
-      </p>
-      <pre id="bibtex-source" hidden>{models.dataset.bibtex}</pre>
-      <p class="reveal muted doi-note">
-        The model files are archived on Zenodo under {models.dataset.license} —{' '}
-        <a href={`https://doi.org/${models.dataset.conceptDoi}`} rel="noopener">
-          doi:{models.dataset.conceptDoi}
-        </a>
-      </p>
+      {dataset.pending ? (
+        <p class="reveal muted narrow">
+          A citation and a permanent DOI for {model.name} will be added here once the
+          model archive is published. In the meantime, please{' '}
+          <a href={`mailto:${profile.email}`}>get in touch</a> if you intend to use it.
+        </p>
+      ) : (
+        <>
+          <p class="reveal muted narrow">
+            {dataset.citations.length > 1
+              ? 'If these models are useful in your work, please cite both the dataset and the paper describing the code they were computed with:'
+              : 'If these models are useful in your work, please cite the paper in which they are presented:'}
+          </p>
+          {dataset.citations.map((entry) => (
+            <div class="usage reveal">
+              <pre><code>{entry}</code></pre>
+            </div>
+          ))}
+          <p class="reveal cite-actions">
+            <button class="btn btn-ghost copy-bibtex" type="button" data-source="bibtex-source">
+              Copy BibTeX
+            </button>
+            <span class="copy-status muted" role="status" aria-live="polite"></span>
+          </p>
+          <pre id="bibtex-source" hidden>{dataset.bibtex}</pre>
+          <p class="reveal muted doi-note">
+            The model files are archived on Zenodo under {dataset.license} —{' '}
+            <a href={`https://doi.org/${dataset.conceptDoi}`} rel="noopener">
+              doi:{dataset.conceptDoi}
+            </a>
+          </p>
+        </>
+      )}
     </div>
   </section>
 
@@ -206,22 +247,19 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
   <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="card-grid">
-        <div class="card reveal">
-          <span class="card-icon" aria-hidden="true">🧮</span>
-          <h3>{models.tool.name}</h3>
-          <p>{models.tool.description}</p>
-          <p><a href={models.tool.url} rel="noopener">View on GitHub →</a></p>
-        </div>
-        <div class="card reveal">
-          <span class="card-icon" aria-hidden="true">⚠️</span>
-          <h3>Total sky coverage</h3>
-          <p>{models.totalCoverageNote}</p>
-        </div>
+        {model.tool && (
+          <div class="card reveal">
+            <span class="card-icon" aria-hidden="true">🧮</span>
+            <h3>{model.tool.name}</h3>
+            <p>{model.tool.description}</p>
+            <p><a href={model.tool.url} rel="noopener">View on GitHub →</a></p>
+          </div>
+        )}
         <div class="card reveal">
           <span class="card-icon" aria-hidden="true">📖</span>
           <h3>References</h3>
           <ul class="refs">
-            {models.references.map((ref) => (
+            {references.map((ref) => (
               <li><a href={ref.url} rel="noopener">{ref.text}</a></li>
             ))}
           </ul>
@@ -324,6 +362,8 @@ const anyDownloads = models.families.some((f) => f.files.some((file) => file.url
 <style>
   .intro { max-width: 62ch; font-size: 1.1rem; }
   .provenance { max-width: 62ch; font-size: 0.92rem; }
+
+  .breadcrumb { font-size: 0.9rem; margin-bottom: 0.5rem; }
   .narrow { max-width: 62ch; }
   .note { font-size: 0.95rem; }
 

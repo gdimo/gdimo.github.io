@@ -1,0 +1,134 @@
+---
+import Base from '../../layouts/Base.astro';
+import data from '../../data/models.json';
+import profile from '../../data/profile.json';
+
+const { shared, models } = data;
+---
+
+<Base
+  title="Table Models"
+  description="RXTorusHR, RXToPo and RXagn1 — downloadable XSPEC table models for the circumnuclear environment of accreting supermassive black holes, computed with RefleX."
+>
+  <section class="section">
+    <div class="container">
+      <span class="kicker">Downloads</span>
+      <h1>XSPEC table models</h1>
+      <p class="intro muted">{shared.intro}</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="model-grid">
+        {models.map((model) => {
+          const ready = model.files.some((file) => file.url);
+          return (
+            <a class="card model-card reveal" href={`/models/${model.id}`}>
+              {model.figure ? (
+                <span class="thumb">
+                  <img src={model.figure.src} alt="" loading="lazy" />
+                </span>
+              ) : (
+                <span class="thumb thumb-empty" aria-hidden="true">◎</span>
+              )}
+              <h2>{model.name}</h2>
+              <p>{model.summary}</p>
+              <p class="status">
+                {ready
+                  ? `${model.files.length} components available`
+                  : 'Release in preparation'}
+              </p>
+            </a>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="card-grid">
+        {models.find((m) => m.tool) && (
+          <div class="card reveal">
+            <span class="card-icon" aria-hidden="true">🧮</span>
+            <h3>{models.find((m) => m.tool).tool.name}</h3>
+            <p>{models.find((m) => m.tool).tool.description}</p>
+            <p>
+              <a href={models.find((m) => m.tool).tool.url} rel="noopener">
+                View on GitHub →
+              </a>
+            </p>
+          </div>
+        )}
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">📖</span>
+          <h3>References</h3>
+          <ul class="refs">
+            {shared.references.map((ref) => (
+              <li><a href={ref.url} rel="noopener">{ref.text}</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="card reveal">
+          <span class="card-icon" aria-hidden="true">✉️</span>
+          <h3>Questions</h3>
+          <p>
+            Need a configuration that isn't here, or having trouble loading a table?{' '}
+            <a href={`mailto:${profile.email}`}>Email me</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .intro { max-width: 62ch; font-size: 1.1rem; }
+  .provenance { max-width: 62ch; font-size: 0.92rem; }
+
+  .model-grid {
+    display: grid;
+    gap: 1.1rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+
+  .model-card h2 {
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem;
+  }
+
+  .model-card p { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  .thumb {
+    display: block;
+    background: #ffffff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 0.5rem;
+    margin-bottom: 0.9rem;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+  }
+
+  .thumb img { width: 100%; height: 100%; object-fit: contain; }
+
+  .thumb-empty {
+    display: grid;
+    place-items: center;
+    background: var(--bg-soft);
+    color: var(--muted);
+    font-size: 2rem;
+  }
+
+  .status {
+    margin-top: 0.7rem !important;
+    font-size: 0.82rem !important;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--amber) !important;
+  }
+
+  .refs { list-style: none; margin: 0; padding: 0; font-size: 0.9rem; }
+  .refs li { margin-bottom: 0.5rem; }
+</style>
