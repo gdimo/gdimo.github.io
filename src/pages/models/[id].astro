@@ -33,7 +33,6 @@ const usage = [
   },
 ];
 
-const others = data.models.filter((m) => m.id !== model.id);
 ---
 
 <Base
@@ -217,12 +216,15 @@ const others = data.models.filter((m) => m.id !== model.id);
       ) : (
         <>
           <p class="reveal muted narrow">
-            If these models are useful in your work, please cite the paper in which they are
-            presented:
+            {dataset.citations.length > 1
+              ? 'If these models are useful in your work, please cite both the dataset and the paper describing the code they were computed with:'
+              : 'If these models are useful in your work, please cite the paper in which they are presented:'}
           </p>
-          <div class="usage reveal">
-            <pre><code>{dataset.citation}</code></pre>
-          </div>
+          {dataset.citations.map((entry) => (
+            <div class="usage reveal">
+              <pre><code>{entry}</code></pre>
+            </div>
+          ))}
           <p class="reveal cite-actions">
             <button class="btn btn-ghost copy-bibtex" type="button" data-source="bibtex-source">
               Copy BibTeX
@@ -245,19 +247,14 @@ const others = data.models.filter((m) => m.id !== model.id);
   <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="card-grid">
-        <div class="card reveal">
-          <span class="card-icon" aria-hidden="true">🧮</span>
-          <h3>{shared.tool.name}</h3>
-          <p>{shared.tool.description}</p>
-          <p><a href={shared.tool.url} rel="noopener">View on GitHub →</a></p>
-        </div>
-        {others.map((other) => (
-          <a class="card reveal" href={`/models/${other.id}`}>
-            <span class="card-icon" aria-hidden="true">🕳️</span>
-            <h3>{other.name}</h3>
-            <p>{other.summary}</p>
-          </a>
-        ))}
+        {model.tool && (
+          <div class="card reveal">
+            <span class="card-icon" aria-hidden="true">🧮</span>
+            <h3>{model.tool.name}</h3>
+            <p>{model.tool.description}</p>
+            <p><a href={model.tool.url} rel="noopener">View on GitHub →</a></p>
+          </div>
+        )}
         <div class="card reveal">
           <span class="card-icon" aria-hidden="true">📖</span>
           <h3>References</h3>

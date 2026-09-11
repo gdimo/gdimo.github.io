@@ -49,12 +49,18 @@ const { shared, models } = data;
   <section class="section" style="padding-top: 0;">
     <div class="container">
       <div class="card-grid">
-        <div class="card reveal">
-          <span class="card-icon" aria-hidden="true">🧮</span>
-          <h3>{shared.tool.name}</h3>
-          <p>{shared.tool.description}</p>
-          <p><a href={shared.tool.url} rel="noopener">View on GitHub →</a></p>
-        </div>
+        {models.find((m) => m.tool) && (
+          <div class="card reveal">
+            <span class="card-icon" aria-hidden="true">🧮</span>
+            <h3>{models.find((m) => m.tool).tool.name}</h3>
+            <p>{models.find((m) => m.tool).tool.description}</p>
+            <p>
+              <a href={models.find((m) => m.tool).tool.url} rel="noopener">
+                View on GitHub →
+              </a>
+            </p>
+          </div>
+        )}
         <div class="card reveal">
           <span class="card-icon" aria-hidden="true">📖</span>
           <h3>References</h3>

@@ -98,15 +98,12 @@
       "conceptDoi": "10.5281/zenodo.22082873",
       "versionDoi": "10.5281/zenodo.22082874",
       "version": "1.0",
-      "citation": "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52",
       "paperDoi": "10.3847/1538-4357/adfd52",
       "bibtex": "@ARTICLE{2025ApJ...992...64D,\n       author = {{Dimopoulos}, G. and {Ricci}, C. and {Paltani}, S.},\n        title = \"{The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models}\",\n      journal = {\\apj},\n     keywords = {Supermassive black holes, Radiative transfer simulations, X-ray active galactic nuclei, 1663, 1967, 2035, High Energy Astrophysical Phenomena},\n         year = 2025,\n        month = oct,\n       volume = {992},\n       number = {1},\n          eid = {64},\n        pages = {64},\n          doi = {10.3847/1538-4357/adfd52},\narchivePrefix = {arXiv},\n       eprint = {2605.06794},\n primaryClass = {astro-ph.HE},\n       adsurl = {https://ui.adsabs.harvard.edu/abs/2025ApJ...992...64D},\n      adsnote = {Provided by the SAO/NASA Astrophysics Data System}\n}",
-      "license": "CC BY 4.0"
-    },
-    "tool": {
-      "name": "Line-of-sight NH calculator",
-      "description": "A command-line utility for computing the line-of-sight column density NH_los for the RXToPo and RXagn1 models using RefleX v3. It provides a simple front-end to the REFLEXINO procedure described in Appendix B of Dimopoulos, Ricci & Paltani (2025), hiding the internal complexity of RefleX and enabling quick calculations for individual sources or batch runs.",
-      "url": "https://github.com/gdimo/reflex-los-calculator"
+      "license": "CC BY 4.0",
+      "citations": [
+        "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52"
+      ]
     },
     "references": [
       {
@@ -202,27 +199,17 @@
           "description": "Photon flux of the input continuum at 1 keV (ph keV⁻¹ cm⁻² s⁻¹)"
         }
       ],
-      "notes": [
-        {
-          "title": "Note on the normalisation.",
-          "text": "The simulations were run at a fixed 2 – 10 keV luminosity, identical for every (Pho_index, Ecut) pair. The tabulated fluxes have been corrected to the standard XSPEC cutoffpl photon normalisation — A = 1 ph keV⁻¹ cm⁻² s⁻¹ at 1 keV — so the table norm can be tied directly to the norm of a cutoffpl component with the same Pho_index and Ecut."
-        },
-        {
-          "title": "Note on the covering factor and the torus size.",
-          "text": "The sublimation radius is held fixed at r_sub = 3.107 × 10¹⁷ cm. The torus tube radius follows from the covering factor as r = TorusCF / (1 − TorusCF) × r_sub, and its distance from the black hole is R = r_sub + r, so that TorusCF = r / R. The volume density of the material is set by the equatorial column density as n = NH / 2r."
-        },
-        {
-          "title": "Note on the X-ray source.",
-          "text": "The continuum is emitted by two spherical sources placed symmetrically above and below the disk plane, at 10 gravitational radii with a radius of 6 gravitational radii, for a black hole mass of 10^6.23 solar masses."
-        }
-      ],
+      "notes": [],
       "dataset": {
         "conceptDoi": "10.5281/zenodo.22699165",
         "versionDoi": "10.5281/zenodo.22699166",
         "version": "1.0",
-        "citation": "Dimopoulos, G. (2026). RXTorusHR: high-resolution X-ray table models for a dusty torus (Version v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.22699166",
-        "bibtex": "@dataset{dimopoulos_2026_22699166,\n  author    = {Dimopoulos, Georgios},\n  title     = {RXTorusHR: high-resolution X-ray table models for a dusty torus},\n  month     = sep,\n  year      = 2026,\n  publisher = {Zenodo},\n  version   = {v1},\n  doi       = {10.5281/zenodo.22699166},\n  url       = {https://doi.org/10.5281/zenodo.22699166}\n}",
-        "license": "CC BY 4.0"
+        "bibtex": "@dataset{dimopoulos_2026_22699166,\n  author    = {Dimopoulos, Georgios},\n  title     = {RXTorusHR: high-resolution X-ray table models for a dusty torus},\n  month     = sep,\n  year      = 2026,\n  publisher = {Zenodo},\n  version   = {v1},\n  doi       = {10.5281/zenodo.22699166},\n  url       = {https://doi.org/10.5281/zenodo.22699166}\n}\n\n@ARTICLE{2017A&A...607A..31P,\n       author = {{Paltani}, S. and {Ricci}, C.},\n        title = \"{RefleX: X-ray absorption and reflection in active galactic nuclei for arbitrary geometries}\",\n      journal = {\\aap},\n         year = 2017,\n        month = nov,\n       volume = {607},\n          eid = {A31},\n        pages = {A31},\n          doi = {10.1051/0004-6361/201629623},\n       adsurl = {https://ui.adsabs.harvard.edu/abs/2017A&A...607A..31P},\n      adsnote = {Provided by the SAO/NASA Astrophysics Data System}\n}",
+        "license": "CC BY 4.0",
+        "citations": [
+          "Dimopoulos, G. (2026). RXTorusHR: high-resolution X-ray table models for a dusty torus (Version v1) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.22699166",
+          "Paltani, S., & Ricci, C. 2017, A&A, 607, A31. doi:10.1051/0004-6361/201629623"
+        ]
       },
       "files": [
         {
@@ -321,7 +308,23 @@
           "size": "1.0 GB"
         }
       ],
-      "provenance": "Developed at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, Santiago, Chile, with the support of ANID Beca Doctorado Nacional 21211606."
+      "provenance": "Developed at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, Santiago, Chile, with the support of ANID Beca Doctorado Nacional 21211606.",
+      "tool": {
+        "name": "Line-of-sight NH calculator",
+        "description": "A command-line utility for computing the line-of-sight column density NH_los for the RXToPo and RXagn1 models using RefleX v3. It provides a simple front-end to the REFLEXINO procedure described in Appendix B of Dimopoulos, Ricci & Paltani (2025), hiding the internal complexity of RefleX and enabling quick calculations for individual sources or batch runs.",
+        "url": "https://github.com/gdimo/reflex-los-calculator"
+      },
+      "dataset": {
+        "conceptDoi": "10.5281/zenodo.22082873",
+        "versionDoi": "10.5281/zenodo.22082874",
+        "version": "1.0",
+        "paperDoi": "10.3847/1538-4357/adfd52",
+        "bibtex": "@ARTICLE{2025ApJ...992...64D,\n       author = {{Dimopoulos}, G. and {Ricci}, C. and {Paltani}, S.},\n        title = \"{The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models}\",\n      journal = {\\apj},\n     keywords = {Supermassive black holes, Radiative transfer simulations, X-ray active galactic nuclei, 1663, 1967, 2035, High Energy Astrophysical Phenomena},\n         year = 2025,\n        month = oct,\n       volume = {992},\n       number = {1},\n          eid = {64},\n        pages = {64},\n          doi = {10.3847/1538-4357/adfd52},\narchivePrefix = {arXiv},\n       eprint = {2605.06794},\n primaryClass = {astro-ph.HE},\n       adsurl = {https://ui.adsabs.harvard.edu/abs/2025ApJ...992...64D},\n      adsnote = {Provided by the SAO/NASA Astrophysics Data System}\n}",
+        "license": "CC BY 4.0",
+        "citations": [
+          "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52"
+        ]
+      }
     },
     {
       "id": "rxagn1",
@@ -381,7 +384,23 @@
           "size": "990.1 MB"
         }
       ],
-      "provenance": "Developed at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, Santiago, Chile, with the support of ANID Beca Doctorado Nacional 21211606."
+      "provenance": "Developed at the Instituto de Estudios Astrofísicos, Universidad Diego Portales, Santiago, Chile, with the support of ANID Beca Doctorado Nacional 21211606.",
+      "tool": {
+        "name": "Line-of-sight NH calculator",
+        "description": "A command-line utility for computing the line-of-sight column density NH_los for the RXToPo and RXagn1 models using RefleX v3. It provides a simple front-end to the REFLEXINO procedure described in Appendix B of Dimopoulos, Ricci & Paltani (2025), hiding the internal complexity of RefleX and enabling quick calculations for individual sources or batch runs.",
+        "url": "https://github.com/gdimo/reflex-los-calculator"
+      },
+      "dataset": {
+        "conceptDoi": "10.5281/zenodo.22082873",
+        "versionDoi": "10.5281/zenodo.22082874",
+        "version": "1.0",
+        "paperDoi": "10.3847/1538-4357/adfd52",
+        "bibtex": "@ARTICLE{2025ApJ...992...64D,\n       author = {{Dimopoulos}, G. and {Ricci}, C. and {Paltani}, S.},\n        title = \"{The Study of the Circumnuclear Environment of Accreting Supermassive Black Holes with Realistic X-Ray Spectral Models}\",\n      journal = {\\apj},\n     keywords = {Supermassive black holes, Radiative transfer simulations, X-ray active galactic nuclei, 1663, 1967, 2035, High Energy Astrophysical Phenomena},\n         year = 2025,\n        month = oct,\n       volume = {992},\n       number = {1},\n          eid = {64},\n        pages = {64},\n          doi = {10.3847/1538-4357/adfd52},\narchivePrefix = {arXiv},\n       eprint = {2605.06794},\n primaryClass = {astro-ph.HE},\n       adsurl = {https://ui.adsabs.harvard.edu/abs/2025ApJ...992...64D},\n      adsnote = {Provided by the SAO/NASA Astrophysics Data System}\n}",
+        "license": "CC BY 4.0",
+        "citations": [
+          "Dimopoulos, G., Ricci, C., & Paltani, S. 2025, ApJ, 992, 64. doi:10.3847/1538-4357/adfd52"
+        ]
+      }
     }
   ]
 }
