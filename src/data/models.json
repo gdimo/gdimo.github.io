@@ -127,13 +127,13 @@
     {
       "id": "rxtorushr",
       "name": "RXTorusHR",
-      "tagline": "A dusty torus, computed on a high-resolution spectral and parameter grid.",
-      "summary": "A single dusty torus at 2 eV spectral resolution, with a free high-energy cutoff.",
-      "note": "RXTorusHR is computed at ten times finer spectral resolution below 10 keV than RXToPo, over a wider range of photon index and covering factor, and with the high-energy cutoff left as a free parameter.",
+      "tagline": "A dusty torus, computed on a dense parameter grid with a free high-energy cutoff.",
+      "summary": "A dusty torus over 360,000 spectra per component, with the cutoff energy left free.",
+      "note": "RXTorusHR is computed over a wider parameter space than RXToPo: the high-energy cutoff is a free parameter, the photon index spans 1.2 to 3.0, and the covering factor is sampled logarithmically from 0.01 to 0.999.",
       "figure": {
         "src": "/figures/rxtorushr-geometry.svg",
         "alt": "Schematic of the RXTorusHR geometry: a central black hole with a spherical corona above and below the disk plane, surrounded by a dusty torus of tube radius r at distance R, with the inner edge at the sublimation radius and the viewing angle θ marked.",
-        "caption": "Geometry of the RXTorusHR model: a single dusty torus, with the covering factor set by CFtor = r / R. Schematic drawn from the model configuration."
+        "caption": "Geometry of the RXTorusHR model: a dusty torus, with the covering factor set by TorusCF = r / R. Schematic drawn from the model configuration."
       },
       "overview": [
         {
@@ -142,7 +142,7 @@
         },
         {
           "property": "Input continuum",
-          "value": "Cutoff power-law with the cutoff energy left free (50 – 350 keV)"
+          "value": "Cutoff power-law, with both the photon index and the cutoff energy free"
         },
         {
           "property": "Energy range",
@@ -150,7 +150,7 @@
         },
         {
           "property": "Spectral resolution",
-          "value": "2 eV below 10 keV; 0.01 dex logarithmic binning from 10 to 300 keV"
+          "value": "20 eV below 10 keV, with 4 eV retained across the Fe Kα, Fe Kβ and Ni Kα windows; 0.01 dex logarithmic binning from 10 to 300 keV"
         },
         {
           "property": "Composition",
@@ -162,50 +162,54 @@
         },
         {
           "property": "Simulation grid",
-          "value": "8,000 RefleX runs of 2 × 10⁹ photons each, sampled in 45 inclination bins"
+          "value": "8,000 RefleX runs of 2 × 10⁹ photons each, sampled in 45 inclination bins — 360,000 spectra per component"
         }
       ],
       "parameters": [
         {
-          "name": "PhoIndex",
+          "name": "Ecut",
+          "range": "50 – 350 keV",
+          "description": "High-energy cutoff of the input continuum; 5 logarithmically spaced values (50, 81.3, 132.3, 215.2, 350 keV), logarithmic interpolation"
+        },
+        {
+          "name": "Pho_index",
           "range": "1.2 – 3.0",
           "description": "Photon index Γ of the input cutoff power-law continuum; 10 values in steps of 0.2"
         },
         {
-          "name": "Ecut",
-          "range": "50 – 350 keV",
-          "description": "High-energy cutoff of the input continuum; 5 logarithmically spaced values (50, 81, 132, 215, 350 keV)"
-        },
-        {
-          "name": "NHeq",
+          "name": "TorusNH",
           "range": "log 22.0 – 25.5",
-          "description": "Equatorial hydrogen column density of the torus; 16 values, in steps of 0.3 dex up to log NH = 23.2 and 0.2 dex from 23.5 upwards"
+          "description": "Equatorial hydrogen column density of the torus; 16 values, in steps of 0.3 dex up to 23.2 and 0.2 dex from 23.5 upwards"
         },
         {
-          "name": "CFtor",
+          "name": "TorusCF",
           "range": "0.01 – 0.999",
-          "description": "Covering factor of the torus, CFtor = r/R; 10 logarithmically spaced values"
+          "description": "Covering factor of the torus, TorusCF = r / R; 10 logarithmically spaced values, logarithmic interpolation"
         },
         {
-          "name": "Inclination",
+          "name": "Obs_angle",
           "range": "1 – 89 deg",
-          "description": "Viewing angle θ of the system (1 = face-on, 89 = edge-on), sampled in 45 bins of 2°"
+          "description": "Viewing angle θ of the system (1 = face-on, 89 = edge-on); 45 bin centres, every 2°"
         },
         {
-          "name": "z",
-          "range": "0 – 5",
-          "description": "Redshift"
+          "name": "Redshift",
+          "range": "free",
+          "description": "Redshift of the source"
         },
         {
           "name": "norm",
-          "range": "0 – 1e20",
+          "range": "free",
           "description": "Photon flux of the input continuum at 1 keV (ph keV⁻¹ cm⁻² s⁻¹)"
         }
       ],
       "notes": [
         {
+          "title": "Note on the normalisation.",
+          "text": "The simulations were run at a fixed 2 – 10 keV luminosity, identical for every (Pho_index, Ecut) pair. The tabulated fluxes have been corrected to the standard XSPEC cutoffpl photon normalisation — A = 1 ph keV⁻¹ cm⁻² s⁻¹ at 1 keV — so the table norm can be tied directly to the norm of a cutoffpl component with the same Pho_index and Ecut."
+        },
+        {
           "title": "Note on the covering factor and the torus size.",
-          "text": "The sublimation radius is held fixed at r_sub = 3.107 × 10¹⁷ cm. The torus inner radius follows from the covering factor as r = CFtor / (1 − CFtor) × r_sub, and its distance from the black hole is R = r_sub + r, so that CFtor = r / R."
+          "text": "The sublimation radius is held fixed at r_sub = 3.107 × 10¹⁷ cm. The torus tube radius follows from the covering factor as r = TorusCF / (1 − TorusCF) × r_sub, and its distance from the black hole is R = r_sub + r, so that TorusCF = r / R. The volume density of the material is set by the equatorial column density as n = NH / 2r."
         },
         {
           "title": "Note on the X-ray source.",
