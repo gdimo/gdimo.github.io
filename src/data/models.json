@@ -126,7 +126,7 @@
       "name": "RXTorusHR",
       "tagline": "A dusty torus, computed on a dense parameter grid with a free high-energy cutoff.",
       "summary": "A dusty torus over 360,000 spectra per component, with the cutoff energy left free.",
-      "note": "RXTorusHR is computed over a wider parameter space than RXToPo: the high-energy cutoff is a free parameter, the photon index spans 1.2 to 3.0, and the covering factor is sampled logarithmically from 0.01 to 0.999.",
+      "note": "RXTorusHR is a new version of the RXTorus and RXTorusD table models, first released with the RefleX code by Paltani & Ricci (2017) and extended to dusty media by Ricci & Paltani (2023). It describes the reprocessing of the primary X-ray continuum by a dusty torus, recomputed here over a denser parameter grid with the high-energy cutoff left free.",
       "figure": {
         "src": "/figures/rxtorushr-geometry.svg",
         "alt": "Schematic of the RXTorusHR geometry: a central black hole with a spherical corona above and below the disk plane, surrounded by a dusty torus of tube radius r at distance R, with the inner edge at the sublimation radius and the viewing angle θ marked.",
