@@ -124,9 +124,9 @@
     {
       "id": "rxtorushr",
       "name": "RXTorusHR",
-      "tagline": "A dusty torus, computed at high spectral resolution across the Fe K complex.",
-      "summary": "High spectral resolution — 4 eV across the Fe Kα, Fe Kβ and Ni Kα complexes.",
-      "note": "RXTorusHR is a new version of the RXTorus and RXTorusD table models, first released with the RefleX code by Paltani & Ricci (2017) and extended to dusty media by Ricci & Paltani (2023). It describes the reprocessing of the primary X-ray continuum by a dusty torus, recomputed here at high spectral resolution — 20 eV, refined to 4 eV across the Fe Kα, Fe Kβ and Ni Kα complexes — over a denser parameter grid and with the high-energy cutoff left free.",
+      "tagline": "A dusty torus, computed at higher spectral resolution than the original RXTorus models.",
+      "summary": "Higher spectral resolution than the original RXTorus tables — 4 eV across the Fe K complex.",
+      "note": "RXTorusHR is a new version of the RXTorus and RXTorusD table models, first released with the RefleX code by Paltani & Ricci (2017) and extended to dusty media by Ricci & Paltani (2023). It describes the reprocessing of the primary X-ray continuum by a dusty torus, recomputed at higher spectral resolution than those original tables — 20 eV, refined to 4 eV across the Fe Kα, Fe Kβ and Ni Kα complexes — over a denser parameter grid and with the high-energy cutoff left free.",
       "figure": {
         "src": "/figures/rxtorushr-geometry.svg",
         "alt": "Schematic of the RXTorusHR geometry: a central black hole with a spherical corona above and below the disk plane, surrounded by a dusty torus of tube radius r at distance R, with the inner edge at the sublimation radius and the viewing angle θ marked.",
