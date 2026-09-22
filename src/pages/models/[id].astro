@@ -44,6 +44,14 @@ const usage = [
       <p class="breadcrumb muted"><a href="/models">Table models</a> ／ {model.name}</p>
       <h1>{model.name}</h1>
       <p class="intro muted">{model.tagline}</p>
+      {model.notice && (
+        <p class="wip">
+          <strong>Work in progress.</strong> {model.notice}{' '}
+          <a href={`mailto:${profile.email}?subject=${encodeURIComponent(`${model.name}: bug report`)}`}>
+            Report a problem
+          </a>
+        </p>
+      )}
       {model.note && <p class="provenance muted note">{model.note}</p>}
       {model.provenance && <p class="provenance muted">{model.provenance}</p>}
       {!anyDownloads && (
@@ -364,6 +372,20 @@ const usage = [
   .provenance { max-width: 62ch; font-size: 0.92rem; }
 
   .breadcrumb { font-size: 0.9rem; margin-bottom: 0.5rem; }
+
+  .wip {
+    max-width: 62ch;
+    margin: 1.4rem 0 1.2rem;
+    padding: 0.85rem 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    border: 1px solid var(--border);
+    border-inline-start: 3px solid var(--amber);
+    border-radius: 0 12px 12px 0;
+    background: var(--bg-elev);
+  }
+
+  .wip strong { color: var(--amber); }
   .narrow { max-width: 62ch; }
   .note { font-size: 0.95rem; }
 
