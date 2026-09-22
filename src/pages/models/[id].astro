@@ -47,10 +47,7 @@ const usage = [
       {model.notice && (
         <p class="wip">
           <strong>Work in progress.</strong> {model.notice.text}{' '}
-          <a href={`mailto:${profile.email}?subject=${encodeURIComponent(`${model.name}: bug report`)}`}>
-            {model.notice.linkText}
-          </a>{' '}
-          (<span class="address">{profile.email}</span>).
+          <span class="address">{profile.email}</span>.
         </p>
       )}
       {model.note && <p class="provenance muted note">{model.note}</p>}
@@ -275,8 +272,8 @@ const usage = [
         </div>
       </div>
       <p class="reveal muted contact">
-        Found a problem, or need a configuration that isn't here?{' '}
-        <a href={`mailto:${profile.email}`}>Email me</a> — I'm happy to help.
+        Found a problem, or need a configuration that isn't here? Email me at{' '}
+        <span class="address">{profile.email}</span> — I'm happy to help.
       </p>
     </div>
   </section>
@@ -388,8 +385,9 @@ const usage = [
 
   .wip strong { color: var(--amber); }
 
-  /* The address is spelled out as well, for readers with no mail client. */
-  .wip .address { font-family: var(--font-mono); font-size: 0.88em; }
+  /* Plain text rather than a mailto link, which does nothing without a
+     configured mail client. */
+  .wip .address { font-family: var(--font-mono); font-size: 0.9em; }
   .narrow { max-width: 62ch; }
   .note { font-size: 0.95rem; }
 
@@ -597,4 +595,5 @@ const usage = [
   .refs li { margin-bottom: 0.5rem; }
 
   .contact { margin-top: 1.8rem; font-size: 0.95rem; }
+  .contact .address { font-family: var(--font-mono); font-size: 0.9em; }
 </style>
